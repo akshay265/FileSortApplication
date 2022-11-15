@@ -32,8 +32,9 @@ namespace FileSortApplication
             this.lbl_welcome = new System.Windows.Forms.Label();
             this.btn_editFile = new System.Windows.Forms.Button();
             this.btn_add = new System.Windows.Forms.Button();
-            this.txt_searchBar = new System.Windows.Forms.RichTextBox();
             this.btn_search = new System.Windows.Forms.Button();
+            this.btn_settings = new System.Windows.Forms.Button();
+            this.txt_searchBar = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lbl_welcome
@@ -66,30 +67,42 @@ namespace FileSortApplication
             this.btn_add.Text = "Add File";
             this.btn_add.UseVisualStyleBackColor = true;
             // 
-            // txt_searchBar
-            // 
-            this.txt_searchBar.Location = new System.Drawing.Point(183, 172);
-            this.txt_searchBar.Name = "txt_searchBar";
-            this.txt_searchBar.Size = new System.Drawing.Size(315, 47);
-            this.txt_searchBar.TabIndex = 4;
-            this.txt_searchBar.Text = "Search for files...";
-            // 
             // btn_search
             // 
-            this.btn_search.Location = new System.Drawing.Point(528, 183);
+            this.btn_search.Location = new System.Drawing.Point(524, 190);
             this.btn_search.Name = "btn_search";
-            this.btn_search.Size = new System.Drawing.Size(75, 23);
+            this.btn_search.Size = new System.Drawing.Size(75, 26);
             this.btn_search.TabIndex = 5;
             this.btn_search.Text = "Search";
             this.btn_search.UseVisualStyleBackColor = true;
+            // 
+            // btn_settings
+            // 
+            this.btn_settings.Location = new System.Drawing.Point(645, 33);
+            this.btn_settings.Name = "btn_settings";
+            this.btn_settings.Size = new System.Drawing.Size(75, 23);
+            this.btn_settings.TabIndex = 6;
+            this.btn_settings.Text = "Settings";
+            this.btn_settings.UseVisualStyleBackColor = true;
+            // 
+            // txt_searchBar
+            // 
+            this.txt_searchBar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_searchBar.Location = new System.Drawing.Point(200, 190);
+            this.txt_searchBar.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.txt_searchBar.Name = "txt_searchBar";
+            this.txt_searchBar.Size = new System.Drawing.Size(318, 26);
+            this.txt_searchBar.TabIndex = 7;
+            this.txt_searchBar.Text = "Search for files here...";
             // 
             // appForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(752, 450);
-            this.Controls.Add(this.btn_search);
+            this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.txt_searchBar);
+            this.Controls.Add(this.btn_settings);
+            this.Controls.Add(this.btn_search);
             this.Controls.Add(this.btn_add);
             this.Controls.Add(this.btn_editFile);
             this.Controls.Add(this.lbl_welcome);
@@ -106,8 +119,9 @@ namespace FileSortApplication
         private System.Windows.Forms.Label lbl_welcome;
         private System.Windows.Forms.Button btn_editFile;
         private System.Windows.Forms.Button btn_add;
-        private System.Windows.Forms.RichTextBox txt_searchBar;
         private System.Windows.Forms.Button btn_search;
+        private System.Windows.Forms.Button btn_settings;
+        private System.Windows.Forms.TextBox txt_searchBar;
     }
 }
 
