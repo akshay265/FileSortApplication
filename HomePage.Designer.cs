@@ -96,7 +96,7 @@ namespace FileSortApplication
             this.txt_searchBar.TabIndex = 7;
             this.txt_searchBar.Text = "Search for files here...";
             // 
-            // appForm
+            // HomePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -107,8 +107,8 @@ namespace FileSortApplication
             this.Controls.Add(this.btn_add);
             this.Controls.Add(this.btn_editFile);
             this.Controls.Add(this.lbl_welcome);
-            this.Name = "Home Page";
-            this.Text = "File Sort App";
+            this.Name = "HomePage";
+            this.Text = "File Sort App - Home";
             this.Load += new System.EventHandler(this.HomePage_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
