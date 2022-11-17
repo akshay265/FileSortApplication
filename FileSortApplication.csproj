@@ -47,18 +47,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="appForm.cs">
+    <Compile Include="AddModifyFilePage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="appForm.Designer.cs">
-      <DependentUpon>appForm.cs</DependentUpon>
+    <Compile Include="AddModifyFilePage.Designer.cs">
+      <DependentUpon>AddModifyFilePage.cs</DependentUpon>
     </Compile>
-    <Compile Include="FileTag.cs" />
-    <Compile Include="UserFile.cs" />
+    <Compile Include="Processes\OpenUserFile.cs" />
+    <Compile Include="HomePage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HomePage.Designer.cs">
+      <DependentUpon>HomePage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DefaultAttributes.cs" />
+    <Compile Include="Models\FileTag.cs" />
+    <Compile Include="Models\UserFile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="appForm.resx">
-      <DependentUpon>appForm.cs</DependentUpon>
+    <EmbeddedResource Include="HomePage.resx">
+      <DependentUpon>HomePage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

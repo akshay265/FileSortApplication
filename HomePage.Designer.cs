@@ -1,7 +1,7 @@
 ﻿
 namespace FileSortApplication
 {
-    partial class appForm
+    partial class HomePage
     {
         /// <summary>
         /// Required designer variable.
@@ -66,6 +66,7 @@ namespace FileSortApplication
             this.btn_add.TabIndex = 2;
             this.btn_add.Text = "Add File";
             this.btn_add.UseVisualStyleBackColor = true;
+            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
             // 
             // btn_search
             // 
@@ -106,9 +107,9 @@ namespace FileSortApplication
             this.Controls.Add(this.btn_add);
             this.Controls.Add(this.btn_editFile);
             this.Controls.Add(this.lbl_welcome);
-            this.Name = "appForm";
-            this.Text = "File Sorter";
-            this.Load += new System.EventHandler(this.appForm_Load);
+            this.Name = "Home Page";
+            this.Text = "File Sort App";
+            this.Load += new System.EventHandler(this.HomePage_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
