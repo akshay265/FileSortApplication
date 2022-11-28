@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 
 
-namespace FileSortApplication
+namespace FileSortApplication.Models
 {
     public class UserFile
     {

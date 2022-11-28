@@ -9,6 +9,7 @@ namespace FileSortApplication.Models
     
     public class DefaultAttributes
     {
+        public static String originalDefaultDir = @"C:\Users";
         public static String defaultDir = @"C:\Users";
 
         public static String DefaultDir

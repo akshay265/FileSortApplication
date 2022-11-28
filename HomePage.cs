@@ -58,15 +58,29 @@ namespace FileSortApplication
 
             this.lbl_welcome.Text = msg;
 
-            
         }
 
         private void btn_add_Click(object sender, EventArgs e)
         {
-           // Process.Start("explorer.exe", DefaultAttributes.defaultDir);
-
-            OpenUserFile.WindowsExplorerOpen(DefaultAttributes.defaultDir);
+            // Process.Start("explorer.exe", DefaultAttributes.defaultDir);
+            //Process.Start("calc.exe");
+            if (DefaultAttributes.defaultDir.Equals(DefaultAttributes.originalDefaultDir))
+            {
+                SettingsPage mySettingsPage = new SettingsPage();
+                this.Hide();
+                mySettingsPage.ShowDialog();
+              //this.Close();
+            }
+            else
+            {
+                OpenUserFile.WindowsExplorerOpen(DefaultAttributes.defaultDir);
+                AddModifyFilePage myAddModPage = new AddModifyFilePage();
+                this.Hide();
+                myAddModPage.ShowDialog();
+                //this.Close();
+            }
 
         }
+
     }
 }

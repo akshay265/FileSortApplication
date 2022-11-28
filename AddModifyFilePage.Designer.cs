@@ -29,42 +29,17 @@ namespace FileSortApplication
         /// </summary>
         private void InitializeComponent()
         {
-            this.txt_searchBar = new System.Windows.Forms.TextBox();
-            this.btn_settings = new System.Windows.Forms.Button();
-            this.btn_search = new System.Windows.Forms.Button();
             this.btn_back = new System.Windows.Forms.Button();
             this.btn_done = new System.Windows.Forms.Button();
             this.lbl_fileOps = new System.Windows.Forms.Label();
             this.btn_delete = new System.Windows.Forms.Button();
+            this.btn_fileName = new System.Windows.Forms.Label();
+            this.btn_date = new System.Windows.Forms.Label();
+            this.btn_add = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // txt_searchBar
-            // 
-            this.txt_searchBar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_searchBar.Location = new System.Drawing.Point(211, 190);
-            this.txt_searchBar.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.txt_searchBar.Name = "txt_searchBar";
-            this.txt_searchBar.Size = new System.Drawing.Size(318, 26);
-            this.txt_searchBar.TabIndex = 13;
-            this.txt_searchBar.Text = "Search for files here...";
-            // 
-            // btn_settings
-            // 
-            this.btn_settings.Location = new System.Drawing.Point(656, 33);
-            this.btn_settings.Name = "btn_settings";
-            this.btn_settings.Size = new System.Drawing.Size(75, 23);
-            this.btn_settings.TabIndex = 12;
-            this.btn_settings.Text = "Settings";
-            this.btn_settings.UseVisualStyleBackColor = true;
-            // 
-            // btn_search
-            // 
-            this.btn_search.Location = new System.Drawing.Point(535, 190);
-            this.btn_search.Name = "btn_search";
-            this.btn_search.Size = new System.Drawing.Size(75, 26);
-            this.btn_search.TabIndex = 11;
-            this.btn_search.Text = "Search";
-            this.btn_search.UseVisualStyleBackColor = true;
             // 
             // btn_back
             // 
@@ -107,15 +82,72 @@ namespace FileSortApplication
             this.btn_delete.Text = "Delete";
             this.btn_delete.UseVisualStyleBackColor = false;
             // 
+            // btn_fileName
+            // 
+            this.btn_fileName.AutoSize = true;
+            this.btn_fileName.Location = new System.Drawing.Point(88, 95);
+            this.btn_fileName.Name = "btn_fileName";
+            this.btn_fileName.Size = new System.Drawing.Size(57, 13);
+            this.btn_fileName.TabIndex = 15;
+            this.btn_fileName.Text = "File Name:";
+            // 
+            // btn_date
+            // 
+            this.btn_date.AutoSize = true;
+            this.btn_date.Location = new System.Drawing.Point(88, 132);
+            this.btn_date.Name = "btn_date";
+            this.btn_date.Size = new System.Drawing.Size(67, 13);
+            this.btn_date.TabIndex = 16;
+            this.btn_date.Text = "Date Taken:";
+            // 
+            // btn_add
+            // 
+            this.btn_add.AutoSize = true;
+            this.btn_add.Location = new System.Drawing.Point(91, 169);
+            this.btn_add.Name = "btn_add";
+            this.btn_add.Size = new System.Drawing.Size(56, 13);
+            this.btn_add.TabIndex = 17;
+            this.btn_add.Text = "Add Tags:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(453, 203);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(68, 13);
+            this.label4.TabIndex = 18;
+            this.label4.Text = "Create Tags:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(91, 226);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(88, 13);
+            this.label5.TabIndex = 19;
+            this.label5.Text = "Current File Path:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(91, 282);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(76, 13);
+            this.label6.TabIndex = 20;
+            this.label6.Text = "New File Path:";
+            // 
             // AddModifyFilePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 461);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.btn_add);
+            this.Controls.Add(this.btn_date);
+            this.Controls.Add(this.btn_fileName);
             this.Controls.Add(this.btn_delete);
-            this.Controls.Add(this.txt_searchBar);
-            this.Controls.Add(this.btn_settings);
-            this.Controls.Add(this.btn_search);
             this.Controls.Add(this.btn_back);
             this.Controls.Add(this.btn_done);
             this.Controls.Add(this.lbl_fileOps);
@@ -127,13 +159,15 @@ namespace FileSortApplication
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txt_searchBar;
-        private System.Windows.Forms.Button btn_settings;
-        private System.Windows.Forms.Button btn_search;
         private System.Windows.Forms.Button btn_back;
         private System.Windows.Forms.Button btn_done;
         private System.Windows.Forms.Label lbl_fileOps;
         private System.Windows.Forms.Button btn_delete;
+        private System.Windows.Forms.Label btn_fileName;
+        private System.Windows.Forms.Label btn_date;
+        private System.Windows.Forms.Label btn_add;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
     }
 }
