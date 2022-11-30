@@ -85,6 +85,7 @@ namespace FileSortApplication
             this.btn_settings.TabIndex = 6;
             this.btn_settings.Text = "Settings";
             this.btn_settings.UseVisualStyleBackColor = true;
+            this.btn_settings.Click += new System.EventHandler(this.btn_settings_Click);
             // 
             // txt_searchBar
             // 

@@ -69,7 +69,7 @@ namespace FileSortApplication
                 SettingsPage mySettingsPage = new SettingsPage();
                 this.Hide();
                 mySettingsPage.ShowDialog();
-              //this.Close();
+                this.Close();
             }
             else
             {
@@ -77,10 +77,17 @@ namespace FileSortApplication
                 AddModifyFilePage myAddModPage = new AddModifyFilePage();
                 this.Hide();
                 myAddModPage.ShowDialog();
-                //this.Close();
+                this.Close();
             }
 
         }
 
+        private void btn_settings_Click(object sender, EventArgs e)
+        {
+            SettingsPage mySettingsPage = new SettingsPage();
+            this.Hide();
+            mySettingsPage.ShowDialog();
+            this.Close();
+        }
     }
 }
