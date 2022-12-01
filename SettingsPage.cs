@@ -45,6 +45,7 @@ namespace FileSortApplication
          * Checks if a given path is valid and if it exists.
          * https://stackoverflow.com/questions/3137097/check-if-a-string-is-a-valid-windows-directory-folder-path
          */
+
         private bool IsValidPath(String path)
         {
             if (path.Length == 0)
