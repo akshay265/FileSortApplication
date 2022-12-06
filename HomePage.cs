@@ -62,18 +62,26 @@ namespace FileSortApplication
 
         private void btn_add_Click(object sender, EventArgs e)
         {
-            // Process.Start("explorer.exe", DefaultAttributes.defaultDir);
-            //Process.Start("calc.exe");
-            if (DefaultAttributes.defaultDir.Equals(DefaultAttributes.originalDefaultDir))
+            if (!DefaultAttributes.UserAware)
             {
-                SettingsPage mySettingsPage = new SettingsPage();
-                this.Hide();
-                mySettingsPage.ShowDialog();
-                this.Close();
+                DialogResult dlg = MessageBox.Show("The default path is set to 'C:/Users'. Is this correct? The default directory can be changed in Settings. Click YES to change the default directory and go to Settings. Click NO to acknowledge that this is correct.", "Default Folder Unchanged", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                
+                if (dlg == DialogResult.Yes)
+                {
+                    DefaultAttributes.UserAware = true;
+                    SettingsPage mySettingsPage = new SettingsPage();
+                    this.Hide();
+                    mySettingsPage.ShowDialog();
+                    this.Close();
+                }
+                else if (dlg == DialogResult.No)
+                {
+                    DefaultAttributes.UserAware = true;
+                } 
             }
             else
             {
-                OpenUserFile.WindowsExplorerOpen(DefaultAttributes.defaultDir);
+             // OpenUserFile.WindowsExplorerOpen(DefaultAttributes.defaultDir);
                 AddModifyFilePage myAddModPage = new AddModifyFilePage();
                 this.Hide();
                 myAddModPage.ShowDialog();

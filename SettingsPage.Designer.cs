@@ -133,11 +133,11 @@ namespace FileSortApplication
             // 
             // btn_changeDirectory
             // 
-            this.btn_changeDirectory.Location = new System.Drawing.Point(261, 118);
+            this.btn_changeDirectory.Location = new System.Drawing.Point(288, 116);
             this.btn_changeDirectory.Name = "btn_changeDirectory";
-            this.btn_changeDirectory.Size = new System.Drawing.Size(199, 30);
+            this.btn_changeDirectory.Size = new System.Drawing.Size(158, 30);
             this.btn_changeDirectory.TabIndex = 17;
-            this.btn_changeDirectory.Text = "Change Default Directory";
+            this.btn_changeDirectory.Text = "Choose Folder";
             this.btn_changeDirectory.UseVisualStyleBackColor = true;
             this.btn_changeDirectory.Click += new System.EventHandler(this.btn_changeDirectory_Click);
             // 

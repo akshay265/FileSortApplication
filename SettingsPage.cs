@@ -114,7 +114,15 @@ namespace FileSortApplication
 
         private void btn_changeDirectory_Click(object sender, EventArgs e)
         {
-            Process.Start("explorer.exe");
+            FolderBrowserDialog folderDlg = new FolderBrowserDialog();
+            folderDlg.ShowNewFolderButton = true;
+
+            DialogResult box = folderDlg.ShowDialog();
+
+            if (box == DialogResult.OK)
+            {
+                txt_manualEdit.Text = folderDlg.SelectedPath;
+            }
         }
         
 

@@ -39,6 +39,7 @@ namespace FileSortApplication
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.txt_fileName = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btn_back
@@ -136,11 +137,19 @@ namespace FileSortApplication
             this.label6.TabIndex = 20;
             this.label6.Text = "New File Path:";
             // 
+            // txt_fileName
+            // 
+            this.txt_fileName.Location = new System.Drawing.Point(151, 92);
+            this.txt_fileName.Name = "txt_fileName";
+            this.txt_fileName.Size = new System.Drawing.Size(100, 20);
+            this.txt_fileName.TabIndex = 21;
+            // 
             // AddModifyFilePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 461);
+            this.Controls.Add(this.txt_fileName);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -169,5 +178,6 @@ namespace FileSortApplication
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txt_fileName;
     }
 }
