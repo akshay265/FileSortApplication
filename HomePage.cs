@@ -97,5 +97,11 @@ namespace FileSortApplication
             mySettingsPage.ShowDialog();
             this.Close();
         }
+
+        private void btnTest_Click(object sender, EventArgs e)
+        {
+            TestDbase test = new TestDbase();
+            test.ShowDialog();
+        }
     }
 }
