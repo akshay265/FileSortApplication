@@ -9,11 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FileSortApplication.Models;
 using FileSortApplication.Processes;
+using System.Collections;
+using System.IO;
 
 namespace FileSortApplication
 {
     public partial class AddModifyFilePage : Form
     {
+        ArrayList prevFileVars = new ArrayList();
         
         public AddModifyFilePage()
         {
@@ -36,30 +39,38 @@ namespace FileSortApplication
         {
             OpenFileDialog addModFileDlg = new OpenFileDialog
             {
-                InitialDirectory = @"D:\",
+                InitialDirectory = DefaultAttributes.DefaultDir,
                 Title = "Browse Text Files",
 
                 CheckFileExists = true,
                 CheckPathExists = true,
+                Multiselect = false,
 
-                DefaultExt = "txt",
-                Filter = "txt files (*.txt)|*.txt",
+                Filter = "Images (*.BMP;*.JPG;*.GIF,*.PNG,*.TIFF)|*.BMP;*.JPG;*.GIF;*.PNG;*.TIFF|" + "All files (*.*)|*.*",
                 FilterIndex = 2,
                 RestoreDirectory = true,
 
                 ReadOnlyChecked = true,
                 ShowReadOnly = true
             };
-            /*
-            OpenFileDialog addModFileDlg = new OpenFileDialog();
-            addModFileDlg.ShowDialog();
 
-            addModFileDlg.InitialDirectory = DefaultAttributes.DefaultDir;
-            addModFileDlg.Title = "Browse for Pictures";
-            addModFileDlg.Multiselect = false;
-            addModFileDlg.Filter = "Images (*.BMP;*.JPG;*.GIF,*.PNG,*.TIFF)|*.BMP;*.JPG;*.GIF;*.PNG;*.TIFF|" + "All files (*.*)|*.*";*/
+            if (addModFileDlg.ShowDialog() == DialogResult.OK)
+            {
+                //populate prevFileVars + display vals and file
+                String prevFileName = addModFileDlg.FileName;
+                FileInfo fInfo = new FileInfo(prevFileName);
 
-            txt_fileName.Text = addModFileDlg.FileName;
+                prevFileVars.Add(prevFileName);
+                prevFileVars.Add(fInfo.Name);
+                prevFileVars.Add(fInfo.Extension);
+                prevFileVars.Add(fInfo.Length);
+                prevFileVars.Add(fInfo.CreationTime);
+                //prevFileVars.Add(fInfo.)
+
+                picBox_file.SizeMode = PictureBoxSizeMode.Zoom;
+                picBox_file.Image = new Bitmap(prevFileName);
+            }
         }
+
     }
 }
