@@ -29,7 +29,7 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -82,6 +82,8 @@
     <Compile Include="AddModifyFilePage.Designer.cs">
       <DependentUpon>AddModifyFilePage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\CurrentPath.cs" />
+    <Compile Include="Models\DbaseConnection.cs" />
     <Compile Include="SettingsPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +102,12 @@
     <Compile Include="Models\UserFile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestDbase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestDbase.Designer.cs">
+      <DependentUpon>TestDbase.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AddModifyFilePage.resx">
       <DependentUpon>AddModifyFilePage.cs</DependentUpon>
     </EmbeddedResource>
@@ -117,6 +125,9 @@
     </Compile>
     <EmbeddedResource Include="SettingsPage.resx">
       <DependentUpon>SettingsPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestDbase.resx">
+      <DependentUpon>TestDbase.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -146,6 +157,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="580b57fcd9996e24bc43c516.ico" />
+    <Content Include="Dbase\UserItem.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Dbase\UserItems.accdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

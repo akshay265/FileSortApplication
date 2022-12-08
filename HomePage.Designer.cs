@@ -35,6 +35,7 @@ namespace FileSortApplication
             this.btn_search = new System.Windows.Forms.Button();
             this.btn_settings = new System.Windows.Forms.Button();
             this.txt_searchBar = new System.Windows.Forms.TextBox();
+            this.btnTest = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbl_welcome
@@ -97,11 +98,23 @@ namespace FileSortApplication
             this.txt_searchBar.TabIndex = 7;
             this.txt_searchBar.Text = "Search for files here...";
             // 
+            // btnTest
+            // 
+            this.btnTest.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTest.Location = new System.Drawing.Point(33, 388);
+            this.btnTest.Name = "btnTest";
+            this.btnTest.Size = new System.Drawing.Size(195, 40);
+            this.btnTest.TabIndex = 8;
+            this.btnTest.Text = "Test Dbase";
+            this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
+            // 
             // HomePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 461);
+            this.Controls.Add(this.btnTest);
             this.Controls.Add(this.txt_searchBar);
             this.Controls.Add(this.btn_settings);
             this.Controls.Add(this.btn_search);
@@ -124,6 +137,7 @@ namespace FileSortApplication
         private System.Windows.Forms.Button btn_search;
         private System.Windows.Forms.Button btn_settings;
         private System.Windows.Forms.TextBox txt_searchBar;
+        private System.Windows.Forms.Button btnTest;
     }
 }
 
