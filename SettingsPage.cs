@@ -100,7 +100,7 @@ namespace FileSortApplication
             }
             else
             {
-                MessageBox.Show("The path entered is not a valid path string or does not exist in this PC's filesystem.", "Invalid Path",MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                MessageBox.Show("The path entered is not a valid path string or does not exist in this PC's filesystem.", "Invalid Path", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

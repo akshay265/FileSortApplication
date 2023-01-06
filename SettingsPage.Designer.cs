@@ -111,6 +111,8 @@ namespace FileSortApplication
             // txt_manualEdit
             // 
             this.txt_manualEdit.AcceptsReturn = true;
+            this.txt_manualEdit.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txt_manualEdit.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystem;
             this.txt_manualEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_manualEdit.ForeColor = System.Drawing.SystemColors.GrayText;
             this.txt_manualEdit.Location = new System.Drawing.Point(19, 37);

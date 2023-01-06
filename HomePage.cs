@@ -34,6 +34,7 @@ namespace FileSortApplication
             this.MaximizeBox = false;
             this.MinimizeBox = true;
             this.BackColor = Color.WhiteSmoke;
+            this.Icon = DefaultAttributes.DefaultIconObj;
 
             //Top Label Text
             String time = DateTime.Now.ToString("HH:mm:ss");
@@ -96,6 +97,12 @@ namespace FileSortApplication
             this.Hide();
             mySettingsPage.ShowDialog();
             this.Close();
+        }
+
+        private void btnTest_Click(object sender, EventArgs e)
+        {
+            TestDbase test = new TestDbase();
+            test.ShowDialog();
         }
     }
 }

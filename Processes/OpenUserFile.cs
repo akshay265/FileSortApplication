@@ -27,6 +27,7 @@ namespace FileSortApplication.Processes
 
             Process = Process.Start(ProcessInfo);
             Process.WaitForExit();
+            
         }
     }
 }
