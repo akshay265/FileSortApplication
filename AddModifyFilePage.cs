@@ -11,13 +11,18 @@ using FileSortApplication.Models;
 using FileSortApplication.Processes;
 using System.Collections;
 using System.IO;
+using System.Data.OleDb;
 
 namespace FileSortApplication
 {
     public partial class AddModifyFilePage : Form
     {
         ArrayList prevFileVars = new ArrayList();
-        
+        OleDbConnection dbaseConnection = new OleDbConnection();
+        OleDbDataAdapter dbaseAdapter;
+        DataTable localTable = new DataTable();
+        int rowPos = 0, rowNum = 0;
+
         public AddModifyFilePage()
         {
             InitializeComponent();
@@ -25,6 +30,23 @@ namespace FileSortApplication
             SetControls();
             OpenDialog();
             PopulateFields();
+        }
+
+        private void AddModifyFilePage_Load(object sender, EventArgs e)
+        {
+            ConnectToDatabase();
+        }
+
+        private void ConnectToDatabase()
+        {
+            dbaseConnection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=UserItems.accdb";
+            dbaseConnection.Open();
+
+            dbaseAdapter = new OleDbDataAdapter("Select * From Files_List", dbaseConnection);
+            dbaseAdapter.Fill(localTable);
+
+            rowPos = (localTable.Rows.Count != 0) ? localTable.Rows.Count : 0;
+
         }
 
         private void SetControls()
@@ -124,5 +146,7 @@ namespace FileSortApplication
                 DataBindings.Clear();
             }
         }
+
+
     }
 }

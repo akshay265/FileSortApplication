@@ -34,7 +34,7 @@ namespace FileSortApplication
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = true;
-            this.BackColor = Color.WhiteSmoke;
+            this.Icon = DefaultAttributes.DefaultIconObj;
 
             //Directory info
             this.txt_currDefault.Text = DefaultAttributes.DefaultDir;
@@ -122,6 +122,7 @@ namespace FileSortApplication
             if (box == DialogResult.OK)
             {
                 txt_manualEdit.Text = folderDlg.SelectedPath;
+                folderDlg.Dispose();
             }
         }
         

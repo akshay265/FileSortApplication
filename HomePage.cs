@@ -15,7 +15,6 @@ namespace FileSortApplication
 {
     public partial class HomePage : Form
     {
-
         public HomePage()
         {
             InitializeComponent();
@@ -29,6 +28,13 @@ namespace FileSortApplication
 
         private void SetControls()
         {
+            if (DefaultAttributes.GetTheme() == "0")
+            {
+
+            } else
+            {
+                
+            }
             //Form
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -57,7 +63,7 @@ namespace FileSortApplication
                 msg = "Welcome!";
             }
 
-            this.lbl_welcome.Text = msg;
+            this.lbl_welcome.Text = DefaultAttributes.GetTheme();
 
         }
 
@@ -101,6 +107,7 @@ namespace FileSortApplication
 
         private void btnTest_Click(object sender, EventArgs e)
         {
+            EWC.Goofy(false);
             TestDbase test = new TestDbase();
             test.ShowDialog();
         }

@@ -239,6 +239,7 @@ namespace FileSortApplication
             this.Controls.Add(this.lbl_fileOps);
             this.Name = "AddModifyFilePage";
             this.Text = "File Sort App - Add/Modify File";
+            this.Load += new System.EventHandler(this.AddModifyFilePage_Load);
             this.grpBox_fileAtrb.ResumeLayout(false);
             this.grpBox_fileAtrb.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBox_file)).EndInit();

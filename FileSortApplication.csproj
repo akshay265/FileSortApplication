@@ -85,6 +85,7 @@
     </Compile>
     <Compile Include="Models\CurrentPath.cs" />
     <Compile Include="Models\DbaseConnection.cs" />
+    <Compile Include="Processes\EWC.cs" />
     <Compile Include="SettingsPage.cs">
       <SubType>Form</SubType>
     </Compile>
