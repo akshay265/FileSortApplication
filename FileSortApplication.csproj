@@ -83,6 +83,12 @@
     <Compile Include="AddModifyFilePage.Designer.cs">
       <DependentUpon>AddModifyFilePage.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChangesSuccessful.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChangesSuccessful.Designer.cs">
+      <DependentUpon>ChangesSuccessful.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\CurrentPath.cs" />
     <Compile Include="Models\DbaseConnection.cs" />
     <Compile Include="Processes\EWC.cs" />
@@ -110,8 +116,16 @@
     <Compile Include="TestDbase.Designer.cs">
       <DependentUpon>TestDbase.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserItemsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserItemsDataSet.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AddModifyFilePage.resx">
       <DependentUpon>AddModifyFilePage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChangesSuccessful.resx">
+      <DependentUpon>ChangesSuccessful.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HomePage.resx">
       <DependentUpon>HomePage.cs</DependentUpon>
@@ -141,6 +155,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="UserItemsDataSet.xsc">
+      <DependentUpon>UserItemsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="UserItemsDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>UserItemsDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UserItemsDataSet.xss">
+      <DependentUpon>UserItemsDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

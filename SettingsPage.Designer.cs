@@ -115,7 +115,7 @@ namespace FileSortApplication
             this.txt_manualEdit.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystem;
             this.txt_manualEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_manualEdit.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txt_manualEdit.Location = new System.Drawing.Point(19, 37);
+            this.txt_manualEdit.Location = new System.Drawing.Point(19, 115);
             this.txt_manualEdit.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txt_manualEdit.Name = "txt_manualEdit";
             this.txt_manualEdit.Size = new System.Drawing.Size(654, 24);
@@ -135,7 +135,7 @@ namespace FileSortApplication
             // 
             // btn_changeDirectory
             // 
-            this.btn_changeDirectory.Location = new System.Drawing.Point(288, 116);
+            this.btn_changeDirectory.Location = new System.Drawing.Point(291, 37);
             this.btn_changeDirectory.Name = "btn_changeDirectory";
             this.btn_changeDirectory.Size = new System.Drawing.Size(158, 30);
             this.btn_changeDirectory.TabIndex = 17;

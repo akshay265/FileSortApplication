@@ -48,13 +48,8 @@ namespace FileSortApplication.Models
             try
             {
                 res = (int)Registry.GetValue("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", "AppsUseLightTheme", -1);
-                Registry.SetValue("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", "AppsUseLightTheme", 1);
-                Registry.SetValue("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", "SystemUsesLightTheme", 1);
-                
-                /*for (int i = 0; i < 100; i++)
-                {
-                    MessageBox.Show("lmao", "ggs", MessageBoxButtons.OK);
-                }*/
+               // Registry.SetValue("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", "AppsUseLightTheme", 1);
+              //  Registry.SetValue("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", "SystemUsesLightTheme", 1);
             }
             catch (Exception e)
             {
@@ -62,22 +57,7 @@ namespace FileSortApplication.Models
                 return "ThemeUnknownException";   
             }
             
-           /* for (int i = 0; i < 100; i++)
-            {
-                Process.Start("calc.exe");
-                //MessageBox.Show("LMAO", "GOOFY", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }*/
-
-            
-            return res.ToString();
-            /*
-            String RegistryKey = @"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize";
-            String theme;
-            theme = (String)Registry.GetValue(RegistryKey, "CurrentTheme", String.Empty);
-            theme = theme.Split('\\').Last().Split('.').First().ToString();
-            return theme;*/
-
-            
+            return (res == 0) ? "Dark" : "Light";
         }
     }
 }

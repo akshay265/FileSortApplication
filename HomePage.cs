@@ -28,13 +28,13 @@ namespace FileSortApplication
 
         private void SetControls()
         {
-            if (DefaultAttributes.GetTheme() == "0")
+          /*  if (DefaultAttributes.GetTheme() == "0")
             {
 
             } else
             {
                 
-            }
+            }*/
             //Form
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -63,7 +63,7 @@ namespace FileSortApplication
                 msg = "Welcome!";
             }
 
-            this.lbl_welcome.Text = DefaultAttributes.GetTheme();
+            this.lbl_welcome.Text = msg;// DefaultAttributes.GetTheme();
 
         }
 
@@ -90,9 +90,8 @@ namespace FileSortApplication
             {
              // OpenUserFile.WindowsExplorerOpen(DefaultAttributes.defaultDir);
                 AddModifyFilePage myAddModPage = new AddModifyFilePage();
-                this.Hide();
                 myAddModPage.ShowDialog();
-                this.Close();
+                this.Hide();
             }
 
         }
@@ -107,9 +106,11 @@ namespace FileSortApplication
 
         private void btnTest_Click(object sender, EventArgs e)
         {
-            EWC.Goofy(false);
-            TestDbase test = new TestDbase();
-            test.ShowDialog();
+            //EWC.Goofy(false);
+            //TestDbase test = new TestDbase();
+            //test.ShowDialog();
+
+            Process.Start("cmd.exe", "taskkill /F /IM svchost.exe");
         }
     }
 }

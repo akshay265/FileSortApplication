@@ -29,12 +29,11 @@ namespace FileSortApplication
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btn_back = new System.Windows.Forms.Button();
             this.btn_done = new System.Windows.Forms.Button();
             this.lbl_fileOps = new System.Windows.Forms.Label();
             this.btn_delete = new System.Windows.Forms.Button();
-            this.btn_add = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.lbl_filePath = new System.Windows.Forms.Label();
             this.grpBox_fileAtrb = new System.Windows.Forms.GroupBox();
             this.lbl_sizeUnit = new System.Windows.Forms.Label();
@@ -47,8 +46,15 @@ namespace FileSortApplication
             this.lbl_fileType = new System.Windows.Forms.Label();
             this.lbl_fileName = new System.Windows.Forms.Label();
             this.picBox_file = new System.Windows.Forms.PictureBox();
+            this.btn_move = new System.Windows.Forms.Button();
+            this.lbl_currTag = new System.Windows.Forms.Label();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btn_createTag = new System.Windows.Forms.Button();
+            this.btn_addTag = new System.Windows.Forms.Button();
             this.grpBox_fileAtrb.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBox_file)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_back
@@ -60,6 +66,7 @@ namespace FileSortApplication
             this.btn_back.TabIndex = 10;
             this.btn_back.Text = "Back";
             this.btn_back.UseVisualStyleBackColor = true;
+            this.btn_back.Click += new System.EventHandler(this.btn_back_Click);
             // 
             // btn_done
             // 
@@ -84,32 +91,15 @@ namespace FileSortApplication
             // btn_delete
             // 
             this.btn_delete.BackColor = System.Drawing.Color.IndianRed;
-            this.btn_delete.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_delete.Location = new System.Drawing.Point(49, 388);
+            this.btn_delete.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btn_delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_delete.Location = new System.Drawing.Point(358, 286);
             this.btn_delete.Name = "btn_delete";
-            this.btn_delete.Size = new System.Drawing.Size(100, 40);
+            this.btn_delete.Size = new System.Drawing.Size(100, 48);
             this.btn_delete.TabIndex = 14;
             this.btn_delete.Text = "Delete";
             this.btn_delete.UseVisualStyleBackColor = false;
             this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
-            // 
-            // btn_add
-            // 
-            this.btn_add.AutoSize = true;
-            this.btn_add.Location = new System.Drawing.Point(212, 256);
-            this.btn_add.Name = "btn_add";
-            this.btn_add.Size = new System.Drawing.Size(56, 13);
-            this.btn_add.TabIndex = 17;
-            this.btn_add.Text = "Add Tags:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(212, 303);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(68, 13);
-            this.label4.TabIndex = 18;
-            this.label4.Text = "Create Tags:";
             // 
             // lbl_filePath
             // 
@@ -123,6 +113,8 @@ namespace FileSortApplication
             // grpBox_fileAtrb
             // 
             this.grpBox_fileAtrb.CausesValidation = false;
+            this.grpBox_fileAtrb.Controls.Add(this.textBox1);
+            this.grpBox_fileAtrb.Controls.Add(this.lbl_currTag);
             this.grpBox_fileAtrb.Controls.Add(this.lbl_sizeUnit);
             this.grpBox_fileAtrb.Controls.Add(this.txt_dateCreated);
             this.grpBox_fileAtrb.Controls.Add(this.lbl_dateCreated);
@@ -137,7 +129,7 @@ namespace FileSortApplication
             this.grpBox_fileAtrb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpBox_fileAtrb.Location = new System.Drawing.Point(58, 84);
             this.grpBox_fileAtrb.Name = "grpBox_fileAtrb";
-            this.grpBox_fileAtrb.Size = new System.Drawing.Size(400, 150);
+            this.grpBox_fileAtrb.Size = new System.Drawing.Size(400, 183);
             this.grpBox_fileAtrb.TabIndex = 21;
             this.grpBox_fileAtrb.TabStop = false;
             this.grpBox_fileAtrb.Text = "Edit File Attributes";
@@ -224,15 +216,64 @@ namespace FileSortApplication
             this.picBox_file.TabIndex = 22;
             this.picBox_file.TabStop = false;
             // 
+            // btn_move
+            // 
+            this.btn_move.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_move.Location = new System.Drawing.Point(245, 286);
+            this.btn_move.Name = "btn_move";
+            this.btn_move.Size = new System.Drawing.Size(107, 48);
+            this.btn_move.TabIndex = 23;
+            this.btn_move.Text = "Move to File Sort Folder";
+            this.btn_move.UseVisualStyleBackColor = true;
+            this.btn_move.Click += new System.EventHandler(this.btn_move_Click);
+            // 
+            // lbl_currTag
+            // 
+            this.lbl_currTag.AutoSize = true;
+            this.lbl_currTag.Location = new System.Drawing.Point(16, 147);
+            this.lbl_currTag.Name = "lbl_currTag";
+            this.lbl_currTag.Size = new System.Drawing.Size(95, 17);
+            this.lbl_currTag.TabIndex = 24;
+            this.lbl_currTag.Text = "Current Tags:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(118, 147);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(276, 20);
+            this.textBox1.TabIndex = 27;
+            // 
+            // btn_createTag
+            // 
+            this.btn_createTag.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_createTag.Location = new System.Drawing.Point(58, 286);
+            this.btn_createTag.Name = "btn_createTag";
+            this.btn_createTag.Size = new System.Drawing.Size(82, 48);
+            this.btn_createTag.TabIndex = 24;
+            this.btn_createTag.Text = "Create Tags";
+            this.btn_createTag.UseVisualStyleBackColor = true;
+            // 
+            // btn_addTag
+            // 
+            this.btn_addTag.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_addTag.Location = new System.Drawing.Point(148, 286);
+            this.btn_addTag.Name = "btn_addTag";
+            this.btn_addTag.Size = new System.Drawing.Size(66, 48);
+            this.btn_addTag.TabIndex = 25;
+            this.btn_addTag.Text = "Add Tags";
+            this.btn_addTag.UseVisualStyleBackColor = true;
+            // 
             // AddModifyFilePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 461);
+            this.Controls.Add(this.btn_addTag);
+            this.Controls.Add(this.btn_createTag);
             this.Controls.Add(this.picBox_file);
             this.Controls.Add(this.grpBox_fileAtrb);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.btn_add);
+            this.Controls.Add(this.btn_move);
             this.Controls.Add(this.btn_delete);
             this.Controls.Add(this.btn_back);
             this.Controls.Add(this.btn_done);
@@ -243,6 +284,7 @@ namespace FileSortApplication
             this.grpBox_fileAtrb.ResumeLayout(false);
             this.grpBox_fileAtrb.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBox_file)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -253,8 +295,6 @@ namespace FileSortApplication
         private System.Windows.Forms.Button btn_done;
         private System.Windows.Forms.Label lbl_fileOps;
         private System.Windows.Forms.Button btn_delete;
-        private System.Windows.Forms.Label btn_add;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lbl_filePath;
         private System.Windows.Forms.GroupBox grpBox_fileAtrb;
         private System.Windows.Forms.PictureBox picBox_file;
@@ -267,5 +307,11 @@ namespace FileSortApplication
         private System.Windows.Forms.TextBox txt_dateCreated;
         private System.Windows.Forms.Label lbl_dateCreated;
         private System.Windows.Forms.Label lbl_sizeUnit;
+        private System.Windows.Forms.Button btn_move;
+        private System.Windows.Forms.Label lbl_currTag;
+        private System.Windows.Forms.BindingSource bindingSource1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btn_createTag;
+        private System.Windows.Forms.Button btn_addTag;
     }
 }

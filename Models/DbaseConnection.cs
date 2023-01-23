@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
@@ -32,6 +33,23 @@ namespace FileSortApplication.Models
             myConn.Close();
 
             return dt;
+        }
+
+        public static void ConnectToDatabase()
+        {
+                        OleDbConnection dbaseConnection = new OleDbConnection();
+            OleDbDataAdapter dbaseAdapter;
+            DataTable localFileTable = new DataTable();
+            int rowPos = 0, rowNum = 0;
+
+            dbaseConnection.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\\Dbase\\UserItems.accdb";
+            
+            dbaseConnection.Open();
+
+            dbaseAdapter = new OleDbDataAdapter("Select * From Files_List", dbaseConnection);
+            dbaseAdapter.Fill(localFileTable);
+
+            rowPos = (localFileTable.Rows.Count != 0) ? localFileTable.Rows.Count : 0;
         }
     }
 }
