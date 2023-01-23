@@ -20,10 +20,12 @@ namespace FileSortApplication
     {
         ArrayList prevFileVars = new ArrayList();
         UserFile currFile;
-        /*OleDbConnection dbaseConnection = new OleDbConnection();
-        OleDbDataAdapter dbaseAdapter;
-        DataTable localFileTable = new DataTable();
-        int rowPos = 0, rowNum = 0;*/
+        /*
+         * OleDbConnection dbaseConnection = new OleDbConnection();
+         * OleDbDataAdapter dbaseAdapter;
+         * DataTable localFileTable = new DataTable();
+         * int rowPos = 0, rowNum = 0;
+         */
         Bitmap b;
 
         public AddModifyFilePage()
