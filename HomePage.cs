@@ -40,7 +40,7 @@ namespace FileSortApplication
             this.MaximizeBox = false;
             this.MinimizeBox = true;
             this.BackColor = Color.WhiteSmoke;
-            this.Icon = DefaultAttributes.DefaultIconObj;
+            //this.Icon = DefaultAttributes.DefaultIconObj;
 
             //Top Label Text
             String time = DateTime.Now.ToString("HH:mm:ss");

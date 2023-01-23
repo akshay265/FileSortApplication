@@ -2,8 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Odbc;
 using System.Data.OleDb;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -37,19 +39,30 @@ namespace FileSortApplication.Models
 
         public static void ConnectToDatabase()
         {
-                        OleDbConnection dbaseConnection = new OleDbConnection();
+            OleDbConnection dbaseConnection = new OleDbConnection();
             OleDbDataAdapter dbaseAdapter;
             DataTable localFileTable = new DataTable();
             int rowPos = 0, rowNum = 0;
 
-            dbaseConnection.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\\Dbase\\UserItems.accdb";
-            
+            string dbaseloc = CurrentPath.GetDbasePath() + "\\UserItems2.accdb";
+            dbaseConnection.ConnectionString = "Provider = Microsoft.ACE.OLEDB.12.0;Data Source = " + dbaseloc + ";";
+
             dbaseConnection.Open();
 
-            dbaseAdapter = new OleDbDataAdapter("Select * From Files_List", dbaseConnection);
+            dbaseAdapter = new OleDbDataAdapter("SELECT * FROM File_List;", dbaseConnection);
             dbaseAdapter.Fill(localFileTable);
 
             rowPos = (localFileTable.Rows.Count != 0) ? localFileTable.Rows.Count : 0;
         }
     }
 }
+
+/*
+OdbcConnection conn = new OdbcConnection();
+conn.ConnectionString = "Driver = {Microsoft Access Driver (*.accdb)}; Dbq = " + dbaseloc ;
+conn.Open();
+
+string CONNECTION_STRING = "Driver={Microsoft Access Driver (*.mdb, *.accdb)};Dbq = " + dbaseloc;
+OdbcConnection myConnection = new OdbcConnection(CONNECTION_STRING);
+myConnection.Open();
+*/
