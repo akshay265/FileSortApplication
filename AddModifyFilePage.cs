@@ -27,22 +27,23 @@ namespace FileSortApplication
          * int rowPos = 0, rowNum = 0;
          */
         Bitmap b;
+       // HomePage hpage;
 
-        public AddModifyFilePage()
+        public AddModifyFilePage(UserFile cFile)
         {
+            this.currFile = cFile;
             InitializeComponent();
             CenterToScreen();
             SetControls();
-            try
+            /*try
             {
-                OpenDialog();
+               // OpenDialog();
                 PopulateFields();
             }
             catch (Exception ex)
             {
-                //do nothing
-                MessageBox.Show(ex.Message);
-            }
+                MessageBox.Show("blakc balls");
+            }*/
             
         }
 
@@ -113,12 +114,11 @@ namespace FileSortApplication
                                                    MessageBoxButtons.OK, 
                                                    MessageBoxIcon.Warning);
 
-                if (dlg == DialogResult.OK)
+                if (dlg == DialogResult.OK || dlg == null)
                 {
-                    
                     this.Close();
-                   // ShowDialog();
                 }
+               // hpage.ShowDialog();
 
             }
             

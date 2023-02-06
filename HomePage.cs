@@ -4,8 +4,10 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FileSortApplication.Models;
@@ -15,6 +17,7 @@ namespace FileSortApplication
 {
     public partial class HomePage : Form
     {
+        UserFile currFile;
         public HomePage()
         {
             InitializeComponent();
@@ -88,12 +91,87 @@ namespace FileSortApplication
             }
             else
             {
-             // OpenUserFile.WindowsExplorerOpen(DefaultAttributes.defaultDir);
-                AddModifyFilePage myAddModPage = new AddModifyFilePage();
-                myAddModPage.ShowDialog();
-                this.Hide();
+               // this.Close();
+                try
+                {
+                    //Close current form
+                    
+                    //Create a thread to RUN a NEW application with the desired form
+                    Thread t = new Thread(new ThreadStart(ThreadAddModForm));
+                    t.Start();
+                    this.Close();
+
+                    //myAddModPage.ShowDialog();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                
             }
 
+        }
+
+        private UserFile OpenFileDialogAddMod()
+        {
+            try
+            {
+                OpenFileDialog addModFileDlg = new OpenFileDialog
+                {
+                    InitialDirectory = DefaultAttributes.DefaultDir,
+                    Title = "Browse Image Files",
+
+                    CheckFileExists = true,
+                    CheckPathExists = true,
+                    Multiselect = false,
+
+                    Filter = "Images (*.BMP;*.JPG;*.GIF,*.PNG,*.TIFF)|*.BMP;*.JPG;*.GIF;*.PNG;*.TIFF|" + "All files (*.*)|*.*",
+                    FilterIndex = 2,
+                    RestoreDirectory = true,
+
+                    ReadOnlyChecked = false,
+                    ShowReadOnly = false
+                };
+                /*
+                if (addModFileDlg.ShowDialog() == DialogResult.OK && addModFileDlg.CheckFileExists)
+                {
+                    //create Userfile
+                    FileInfo fInfo = new FileInfo(addModFileDlg.FileName);
+
+                    currFile = new UserFile(-1,
+                                            fInfo.Name,
+                                            fInfo.FullName,
+                                            fInfo.Extension,
+                                            fInfo.Length,
+                                            fInfo.CreationTime.ToString(),
+                                            "");
+
+                    return currFile;
+                }
+            }
+            catch (Exception ex)
+            {
+                DialogResult dlg = MessageBox.Show("You must select a file to add or modify it.",
+                                                   "File Operation",
+                                                   MessageBoxButtons.OK,
+                                                   MessageBoxIcon.Warning);
+
+                if (dlg == DialogResult.OK || dlg == null)
+                {
+                    this.Close();
+                }
+
+                return null;*/
+            } catch(Exception ex) { }
+
+            return null;
+        }
+
+        private void ThreadAddModForm()
+        {
+            //RUNs a NEW application with the desired form
+            UserFile cFile = OpenFileDialogAddMod();
+            Application.Run(new AddModifyFilePage(cFile));
         }
 
         private void btn_settings_Click(object sender, EventArgs e)
@@ -106,11 +184,12 @@ namespace FileSortApplication
 
         private void btnTest_Click(object sender, EventArgs e)
         {
+            //DefaultAttributes.GetTheme();
             //EWC.Goofy(false);
             //TestDbase test = new TestDbase();
             //test.ShowDialog();
 
-            Process.Start("cmd.exe", "taskkill /F /IM svchost.exe");
+            //Process.Start("cmd.exe", "taskkill /F /IM svchost.exe");
         }
     }
 }

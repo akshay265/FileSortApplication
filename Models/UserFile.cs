@@ -36,7 +36,7 @@ namespace FileSortApplication.Models
         public int FileID
         {
             get { return fileID; }
-            //set { fileID = value; }
+            set { fileID = value; }
         }
 
         public String Name
