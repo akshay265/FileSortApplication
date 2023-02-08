@@ -29,13 +29,14 @@ namespace FileSortApplication
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.btn_back = new System.Windows.Forms.Button();
             this.btn_done = new System.Windows.Forms.Button();
             this.lbl_fileOps = new System.Windows.Forms.Label();
             this.btn_delete = new System.Windows.Forms.Button();
             this.lbl_filePath = new System.Windows.Forms.Label();
             this.grpBox_fileAtrb = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.lbl_currTag = new System.Windows.Forms.Label();
             this.lbl_sizeUnit = new System.Windows.Forms.Label();
             this.txt_dateCreated = new System.Windows.Forms.TextBox();
             this.lbl_dateCreated = new System.Windows.Forms.Label();
@@ -47,14 +48,10 @@ namespace FileSortApplication
             this.lbl_fileName = new System.Windows.Forms.Label();
             this.picBox_file = new System.Windows.Forms.PictureBox();
             this.btn_move = new System.Windows.Forms.Button();
-            this.lbl_currTag = new System.Windows.Forms.Label();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.btn_createTag = new System.Windows.Forms.Button();
             this.btn_addTag = new System.Windows.Forms.Button();
             this.grpBox_fileAtrb.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBox_file)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_back
@@ -133,6 +130,23 @@ namespace FileSortApplication
             this.grpBox_fileAtrb.TabIndex = 21;
             this.grpBox_fileAtrb.TabStop = false;
             this.grpBox_fileAtrb.Text = "Edit File Attributes";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(118, 147);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(276, 20);
+            this.textBox1.TabIndex = 27;
+            // 
+            // lbl_currTag
+            // 
+            this.lbl_currTag.AutoSize = true;
+            this.lbl_currTag.Location = new System.Drawing.Point(16, 147);
+            this.lbl_currTag.Name = "lbl_currTag";
+            this.lbl_currTag.Size = new System.Drawing.Size(95, 17);
+            this.lbl_currTag.TabIndex = 24;
+            this.lbl_currTag.Text = "Current Tags:";
             // 
             // lbl_sizeUnit
             // 
@@ -227,23 +241,6 @@ namespace FileSortApplication
             this.btn_move.UseVisualStyleBackColor = true;
             this.btn_move.Click += new System.EventHandler(this.btn_move_Click);
             // 
-            // lbl_currTag
-            // 
-            this.lbl_currTag.AutoSize = true;
-            this.lbl_currTag.Location = new System.Drawing.Point(16, 147);
-            this.lbl_currTag.Name = "lbl_currTag";
-            this.lbl_currTag.Size = new System.Drawing.Size(95, 17);
-            this.lbl_currTag.TabIndex = 24;
-            this.lbl_currTag.Text = "Current Tags:";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(118, 147);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(276, 20);
-            this.textBox1.TabIndex = 27;
-            // 
             // btn_createTag
             // 
             this.btn_createTag.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -253,6 +250,7 @@ namespace FileSortApplication
             this.btn_createTag.TabIndex = 24;
             this.btn_createTag.Text = "Create Tags";
             this.btn_createTag.UseVisualStyleBackColor = true;
+            this.btn_createTag.Click += new System.EventHandler(this.btn_createTag_Click);
             // 
             // btn_addTag
             // 
@@ -263,6 +261,7 @@ namespace FileSortApplication
             this.btn_addTag.TabIndex = 25;
             this.btn_addTag.Text = "Add Tags";
             this.btn_addTag.UseVisualStyleBackColor = true;
+            this.btn_addTag.Click += new System.EventHandler(this.btn_addTag_Click);
             // 
             // AddModifyFilePage
             // 
@@ -284,7 +283,6 @@ namespace FileSortApplication
             this.grpBox_fileAtrb.ResumeLayout(false);
             this.grpBox_fileAtrb.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBox_file)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -309,7 +307,6 @@ namespace FileSortApplication
         private System.Windows.Forms.Label lbl_sizeUnit;
         private System.Windows.Forms.Button btn_move;
         private System.Windows.Forms.Label lbl_currTag;
-        private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btn_createTag;
         private System.Windows.Forms.Button btn_addTag;

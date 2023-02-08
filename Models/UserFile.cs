@@ -7,6 +7,8 @@ using System.IO;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using System.Drawing;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Data.OleDb;
 
 namespace FileSortApplication.Models
 {
@@ -114,7 +116,7 @@ namespace FileSortApplication.Models
         
         }
 
-        public Boolean Delete(Bitmap bmap)
+        public bool Delete(Bitmap bmap)
         {
             bmap.Dispose();
             bmap = null;
@@ -129,14 +131,33 @@ namespace FileSortApplication.Models
                 return false;
             }
 
-            try
+            if (fileID > 0)
             {
-                DbaseConnection.ConnectToDatabase();
+                try
+                {
+                    DbaseConnection.ConnectToDatabase();
+
+                    String sql = " DELETE FROM File_List WHERE [FILE_NAME] =?";
+
+                    using (OleDbConnection dbconn = new OleDbConnection("Provider = Microsoft.ACE.OLEDB.12.0; Data Source = " + CurrentPath.GetDbasePath() + "\\UserItems.accdb;"))
+                    {
+                        dbconn.Open();
+                        OleDbCommand My_Command = new OleDbCommand(sql, dbconn);
+                        My_Command.Parameters.Add("@p1", name);
+                        My_Command.ExecuteNonQuery();
+                    }
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return false;
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
-                return false;   
+                if (!fileObj.Exists)
+                    return true;
             }
 
             return false;

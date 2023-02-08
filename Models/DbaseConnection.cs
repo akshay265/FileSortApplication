@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Odbc;
 using System.Data.OleDb;
+using System.DirectoryServices;
+using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -13,22 +15,31 @@ namespace FileSortApplication.Models
 {
     public static class DbaseConnection
     {
-        static string localDbase = CurrentPath.GetDbasePath() + "\\UserItem.mdb";
+        static string localDbase = CurrentPath.GetDbasePath() + "\\UserItemsDB.accdb";
         static string DSN = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + localDbase;
 
+        static OleDbConnection myConn = new OleDbConnection(DSN);
+        static OleDbDataAdapter myAdapter;
+        
+
+        public static void EstablishConn(string SQL)
+        {
+            myAdapter = new OleDbDataAdapter(SQL, myConn);
+            myConn.Open();
+        }
         public static DataTable GetFileListData()
         {
-            //DSN = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + localDbase;
-            
-            string SQL = "SELECT * FROM Files_List";
 
+            string SQL = "SELECT * FROM File_List";
+/*
             //Create Objects of ADOConnection and ADOCommand    
             OleDbConnection myConn = new OleDbConnection(DSN);
             OleDbDataAdapter myCmd = new OleDbDataAdapter(SQL, myConn);
-            myConn.Open();
+            myConn.Open();*/
+            EstablishConn(SQL);
 
             DataSet ds = new DataSet();
-            myCmd.Fill(ds, "Files_List");
+            myAdapter.Fill(ds, "File_List");
 
             DataTable dt = ds.Tables[0];
 
@@ -37,14 +48,53 @@ namespace FileSortApplication.Models
             return dt;
         }
 
+        public static DataTable GetTagListData()
+        {
+            string SQL = "SELECT * FROM Tags_List";
+
+            /* //Create Objects of ADOConnection and ADOCommand    
+             OleDbConnection myConn = new OleDbConnection(DSN);
+             OleDbDataAdapter myCmd = new OleDbDataAdapter(SQL, myConn);
+             myConn.Open();*/
+            
+            EstablishConn(SQL);
+
+            DataSet ds = new DataSet();
+            myAdapter.Fill(ds, "Tags_List");
+
+            DataTable dt = ds.Tables[0];
+
+            myConn.Close();
+
+            return dt;
+        }
+
+        public static void AddTag(FileTag newTag)
+        {
+            //string sql = "INSERT INTO Fault (str) VALUES (?)";
+            //EstablishConn(sql);
+            using (myConn = new OleDbConnection(DSN))
+            using (OleDbCommand cmd = new OleDbCommand())
+            {
+                cmd.Connection = myConn;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "INSERT INTO Tags_List (str) VALUES (?)";
+
+                cmd.Parameters.Add(new OleDbParameter("@str", OleDbType.VarChar)).Value = newTag.ToString();
+
+                myConn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
         public static void ConnectToDatabase()
         {
             OleDbConnection dbaseConnection = new OleDbConnection();
             OleDbDataAdapter dbaseAdapter;
             DataTable localFileTable = new DataTable();
-            int rowPos = 0, rowNum = 0;
+            
 
-            string dbaseloc = CurrentPath.GetDbasePath() + "\\UserItems2.accdb";
+            string dbaseloc = CurrentPath.GetDbasePath() + "\\UserItems.accdb";
             dbaseConnection.ConnectionString = "Provider = Microsoft.ACE.OLEDB.12.0;Data Source = " + dbaseloc + ";";
 
             dbaseConnection.Open();
@@ -52,7 +102,7 @@ namespace FileSortApplication.Models
             dbaseAdapter = new OleDbDataAdapter("SELECT * FROM File_List;", dbaseConnection);
             dbaseAdapter.Fill(localFileTable);
 
-            rowPos = (localFileTable.Rows.Count != 0) ? localFileTable.Rows.Count : 0;
+           // rowPos = (localFileTable.Rows.Count != 0) ? localFileTable.Rows.Count : 0;
         }
     }
 }

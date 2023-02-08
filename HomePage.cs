@@ -94,12 +94,13 @@ namespace FileSortApplication
                // this.Close();
                 try
                 {
-                    //Close current form
                     
+                    UserFileStoreTemp.tempUserFile = OpenFileDialogAddMod();
                     //Create a thread to RUN a NEW application with the desired form
                     Thread t = new Thread(new ThreadStart(ThreadAddModForm));
                     t.Start();
                     this.Close();
+                    this.Dispose();
 
                     //myAddModPage.ShowDialog();
                 }
@@ -119,7 +120,7 @@ namespace FileSortApplication
                 OpenFileDialog addModFileDlg = new OpenFileDialog
                 {
                     InitialDirectory = DefaultAttributes.DefaultDir,
-                    Title = "Browse Image Files",
+                    Title = "asdf",
 
                     CheckFileExists = true,
                     CheckPathExists = true,
@@ -132,7 +133,7 @@ namespace FileSortApplication
                     ReadOnlyChecked = false,
                     ShowReadOnly = false
                 };
-                /*
+                
                 if (addModFileDlg.ShowDialog() == DialogResult.OK && addModFileDlg.CheckFileExists)
                 {
                     //create Userfile
@@ -161,8 +162,8 @@ namespace FileSortApplication
                     this.Close();
                 }
 
-                return null;*/
-            } catch(Exception ex) { }
+                return null;
+            }
 
             return null;
         }
@@ -170,8 +171,7 @@ namespace FileSortApplication
         private void ThreadAddModForm()
         {
             //RUNs a NEW application with the desired form
-            UserFile cFile = OpenFileDialogAddMod();
-            Application.Run(new AddModifyFilePage(cFile));
+            Application.Run(new AddModifyFilePage(UserFileStoreTemp.tempUserFile));
         }
 
         private void btn_settings_Click(object sender, EventArgs e)

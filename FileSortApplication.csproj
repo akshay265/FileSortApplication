@@ -83,12 +83,19 @@
     <Compile Include="AddModifyFilePage.Designer.cs">
       <DependentUpon>AddModifyFilePage.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChangesSuccessful.cs">
+    <Compile Include="AddTagPage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChangesSuccessful.Designer.cs">
-      <DependentUpon>ChangesSuccessful.cs</DependentUpon>
+    <Compile Include="AddTagPage.Designer.cs">
+      <DependentUpon>AddTagPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="SuccessPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SuccessPage.Designer.cs">
+      <DependentUpon>SuccessPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserFileStoreTemp.cs" />
     <Compile Include="Models\CurrentPath.cs" />
     <Compile Include="Models\DbaseConnection.cs" />
     <Compile Include="Processes\EWC.cs" />
@@ -124,8 +131,11 @@
     <EmbeddedResource Include="AddModifyFilePage.resx">
       <DependentUpon>AddModifyFilePage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChangesSuccessful.resx">
-      <DependentUpon>ChangesSuccessful.cs</DependentUpon>
+    <EmbeddedResource Include="AddTagPage.resx">
+      <DependentUpon>AddTagPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SuccessPage.resx">
+      <DependentUpon>SuccessPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HomePage.resx">
       <DependentUpon>HomePage.cs</DependentUpon>
@@ -138,6 +148,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="SettingsPage.resx">
       <DependentUpon>SettingsPage.cs</DependentUpon>
@@ -183,17 +194,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Dbase\UserItem.mdb">
+    <Content Include="Dbase\UserItemsDB.accdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Dbase\UserItems.accdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Dbase\UserItems2.accdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Models\big_man.ico" />
+    <Content Include="Icon\big_man.ico" />
     <Content Include="Icon\man.ico" />
+    <None Include="Resources\green_checkmark.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

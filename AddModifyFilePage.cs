@@ -12,6 +12,7 @@ using FileSortApplication.Processes;
 using System.Collections;
 using System.IO;
 using System.Data.OleDb;
+using System.Threading;
 
 namespace FileSortApplication
 {
@@ -20,6 +21,8 @@ namespace FileSortApplication
     {
         ArrayList prevFileVars = new ArrayList();
         UserFile currFile;
+        bool isSuccessful;
+        string operationStr;
         /*
          * OleDbConnection dbaseConnection = new OleDbConnection();
          * OleDbDataAdapter dbaseAdapter;
@@ -31,25 +34,42 @@ namespace FileSortApplication
 
         public AddModifyFilePage(UserFile cFile)
         {
-            this.currFile = cFile;
-            InitializeComponent();
-            CenterToScreen();
-            SetControls();
-            /*try
+            if (cFile != null)
             {
-               // OpenDialog();
-                PopulateFields();
+                this.currFile = cFile;
+                InitializeComponent();
+                CenterToScreen();
+                SetControls();
+
+                try
+                {
+                    PopulateFields();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("blakc balls");
-            }*/
-            
+                MessageBox.Show("Please select a file to add or modify.");
+
+                //Create a thread to RUN a NEW application with the desired form
+                Thread t = new Thread(new ThreadStart(ThreadHomePageForm));
+                t.Start();
+                this.Close();
+            }
         }
 
         private void AddModifyFilePage_Load(object sender, EventArgs e)
         {
-            DbaseConnection.ConnectToDatabase();
+            //DbaseConnection.ConnectToDatabase();
+        }
+
+        private void ThreadHomePageForm()
+        {
+            //RUNs a NEW application with the desired form
+            Application.Run(new HomePage());
         }
 
         private void SetControls()
@@ -60,7 +80,7 @@ namespace FileSortApplication
             this.MinimizeBox = true;
             this.BackColor = Color.WhiteSmoke;
         }
-
+        /*
         private void OpenDialog()
         {
             try
@@ -118,20 +138,15 @@ namespace FileSortApplication
                 {
                     this.Close();
                 }
-               // hpage.ShowDialog();
-
             }
-            
-
-        }
+        }*/
 
         private void PopulateFields()
         {
+            this.txt_fileName.Text = currFile.Name; // prevFileVars[0].ToString();
+            this.txt_fileType.Text = currFile.Type; // prevFileVars[2].ToString();
 
-            this.txt_fileName.Text = prevFileVars[0].ToString();
-            this.txt_fileType.Text = prevFileVars[2].ToString();
-
-            long s = long.Parse(prevFileVars[3].ToString());
+            long s = currFile.Size; //long.Parse(prevFileVars[3].ToString());
             if (s > 1000000000000) //TB
             {
                 double res = s / 1000000000000.0;
@@ -156,13 +171,21 @@ namespace FileSortApplication
             {
                 this.lbl_sizeUnit.Text = s.ToString("#,##0") + " bytes";
             }
-            
-            this.txt_dateCreated.Text = prevFileVars[4].ToString();
-            this.txt_filePath.Text = prevFileVars[5].ToString();
+
+            this.txt_dateCreated.Text = currFile.DateCreated; //prevFileVars[4].ToString();
+            this.txt_filePath.Text = currFile.Path; //prevFileVars[5].ToString();
 
             picBox_file.SizeMode = PictureBoxSizeMode.Zoom;
             b = new Bitmap(this.txt_filePath.Text);
             picBox_file.Image = b;
+        }
+
+        public void GoToFinalPage()
+        {
+            this.Hide();
+            SuccessPage mySuccessPage = new SuccessPage(isSuccessful, operationStr);
+            mySuccessPage.ShowDialog();
+            this.Close();
         }
 
         private void btn_back_Click(object sender, EventArgs e)
@@ -181,17 +204,19 @@ namespace FileSortApplication
 
         private void btn_delete_Click(object sender, EventArgs e)
         {
-            String m = "Are you sure you want to delete '" + prevFileVars[10].ToString() + "'?";
+            String m = "Are you sure you want to delete '" + currFile.Name + "'?";
             DialogResult dlg = MessageBox.Show(m,"File Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
+            
             if (dlg == DialogResult.Yes)
             {
-                currFile.Delete(b);
+                isSuccessful = currFile.Delete(b);
             }
             else if (dlg == DialogResult.No)
             {
-                
+                //nothing
             }
+
+            GoToFinalPage();
         }
 
         private void btn_move_Click(object sender, EventArgs e)
@@ -205,6 +230,17 @@ namespace FileSortApplication
                 MessageBox.Show(ex.Message);
 
             }
+        }
+
+        private void btn_addTag_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btn_createTag_Click(object sender, EventArgs e)
+        {
+            AddTagPage myAddTagPage = new AddTagPage();
+            myAddTagPage.ShowDialog();
         }
     }
 }
