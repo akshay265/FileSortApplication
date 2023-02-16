@@ -13,7 +13,7 @@ using System.Windows.Forms;
 namespace FileSortApplication.Models
 {
     
-    public class DefaultAttributes
+    public static class DefaultAttributes
     {
         public static String originalDefaultDir = @"C:\Users";
         private static String defaultDir = @"C:\Users";

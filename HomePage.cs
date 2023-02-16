@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -98,13 +99,17 @@ namespace FileSortApplication
                     UserFileStoreTemp.tempUserFile = OpenFileDialogAddMod();
                     //Create a thread to RUN a NEW application with the desired form
                     Thread t = new Thread(new ThreadStart(ThreadAddModForm));
-                    t.Start();
+                    t.SetApartmentState(ApartmentState.STA);
+                    ThreadScheduler.AddThread(t, 1);
+                    ThreadScheduler.StartThread(1);
                     this.Close();
                     this.Dispose();
+                    ThreadScheduler.AbortThread(0);
+
 
                     //myAddModPage.ShowDialog();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
@@ -120,7 +125,7 @@ namespace FileSortApplication
                 OpenFileDialog addModFileDlg = new OpenFileDialog
                 {
                     InitialDirectory = DefaultAttributes.DefaultDir,
-                    Title = "asdf",
+                    Title = "Please choose a file.",
 
                     CheckFileExists = true,
                     CheckPathExists = true,
@@ -173,13 +178,40 @@ namespace FileSortApplication
             //RUNs a NEW application with the desired form
             Application.Run(new AddModifyFilePage(UserFileStoreTemp.tempUserFile));
         }
+        private void ThreadSettingsForm()
+        {
+            Clipboard.SetText("big black nigbard balls");
+
+            Application.Run(new SettingsPage());
+        }
 
         private void btn_settings_Click(object sender, EventArgs e)
         {
-            SettingsPage mySettingsPage = new SettingsPage();
+            try
+            {
+
+                Thread t = new Thread(new ThreadStart(ThreadSettingsForm));
+                t.SetApartmentState(ApartmentState.STA);
+                ThreadScheduler.AddThread(t, 1);
+                ThreadScheduler.StartThread(1);
+
+                this.Close();
+                this.Dispose();
+                ThreadScheduler.AbortThread(0);
+                //t.Start();
+              //  this.Close();
+                //this.Dispose();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+            /*SettingsPage mySettingsPage = new SettingsPage();
             this.Hide();
             mySettingsPage.ShowDialog();
-            this.Close();
+            this.Close();*/
         }
 
         private void btnTest_Click(object sender, EventArgs e)

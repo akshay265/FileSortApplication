@@ -37,6 +37,7 @@ namespace FileSortApplication
             if (cFile != null)
             {
                 this.currFile = cFile;
+
                 InitializeComponent();
                 CenterToScreen();
                 SetControls();

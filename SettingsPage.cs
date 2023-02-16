@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FileSortApplication.Models;
@@ -48,7 +49,7 @@ namespace FileSortApplication
 
         private bool IsValidPath(String path)
         {
-            if (path.Length == 0)
+            if (path.Length == 0 || path.Equals("Add Directory Path Here"))
             {
                 return true;
             }
@@ -81,22 +82,40 @@ namespace FileSortApplication
 
         private void btn_back_Click(object sender, EventArgs e)
         {
+
+            Thread t = new Thread(new ThreadStart(ThreadHomePage));
+            ThreadScheduler.AddThread(t, 0);
+            ThreadScheduler.StartThread(0);
+            /*
             HomePage myHomePage = new HomePage();
             this.Hide();
-            myHomePage.ShowDialog();
-            //this.Close();
+            myHomePage.ShowDialog();*/
+            this.Close();
+            this.Dispose();
+            ThreadScheduler.AbortThread(1);
         }
 
         private void btn_save_Click(object sender, EventArgs e)
         {
             if (IsValidPath(txt_manualEdit.Text) )
             {
-                DefaultAttributes.DefaultDir = txt_manualEdit.Text;
+                if (!txt_manualEdit.Text.Equals("Add Directory Path Here"))
+                {
+                    DefaultAttributes.DefaultDir = txt_manualEdit.Text;
 
-                HomePage myHomePage = new HomePage();
+                }
+
+                Thread t = new Thread(new ThreadStart(ThreadHomePage));
+                ThreadScheduler.AddThread(t, 0);
+                ThreadScheduler.StartThread(0);
+
+                this.Close();
+                this.Dispose();
+                ThreadScheduler.AbortThread(1);
+                /*HomePage myHomePage = new HomePage();
                 this.Hide();
                 myHomePage.ShowDialog();
-                //this.Close();
+                //this.Close();*/
             }
             else
             {
@@ -124,6 +143,11 @@ namespace FileSortApplication
                 txt_manualEdit.Text = folderDlg.SelectedPath;
                 folderDlg.Dispose();
             }
+        }
+
+        private void ThreadHomePage()
+        {
+            Application.Run(new HomePage());
         }
         
 
