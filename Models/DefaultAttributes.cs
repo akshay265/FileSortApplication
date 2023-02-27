@@ -19,7 +19,7 @@ namespace FileSortApplication.Models
         private static String defaultDir = @"C:\Users";
         private static bool isUserAware = false;
         //private static Icon iconObj = new Icon(@"C:\Users\Akshay\Source\Repos\akshay265\FileSortApplication\Models\man.ico");
-        private static Icon iconObj = new Icon(CurrentPath.GetCurrentPath() + "//Icon/man.ico");
+        private static Icon iconObj = new Icon(CurrentPath.GetCurrentPath() + "//Icon/folder.ico");
 
         public static String DefaultDir
         {

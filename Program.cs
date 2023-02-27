@@ -21,7 +21,7 @@ namespace FileSortApplication
 
             Thread t = new Thread(new ThreadStart(ThreadHomePage));
             ThreadScheduler.AddThread(t, 0);
-            ThreadScheduler.StartThread(0);
+            //ThreadScheduler.StartThread(0);
         }
 
         private static void ThreadHomePage()

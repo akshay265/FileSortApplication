@@ -30,8 +30,9 @@ namespace FileSortApplication
          * int rowPos = 0, rowNum = 0;
          */
         Bitmap b;
-       // HomePage hpage;
+        // HomePage hpage;
 
+        
         public AddModifyFilePage(UserFile cFile)
         {
             if (cFile != null)
@@ -57,16 +58,25 @@ namespace FileSortApplication
 
                 //Create a thread to RUN a NEW application with the desired form
                 Thread t = new Thread(new ThreadStart(ThreadHomePageForm));
-                t.Start();
+                //t.Start();
+
+                t.SetApartmentState(ApartmentState.STA);
+                ThreadScheduler.AddThread(t, 1);
+                //ThreadScheduler.StartThread(1);
                 this.Close();
+                this.Dispose();
+                ThreadScheduler.AbortThread(0);
+                //this.Close();
             }
         }
 
+        [STAThread]
         private void AddModifyFilePage_Load(object sender, EventArgs e)
         {
             //DbaseConnection.ConnectToDatabase();
         }
 
+        [STAThread]
         private void ThreadHomePageForm()
         {
             //RUNs a NEW application with the desired form
@@ -142,6 +152,7 @@ namespace FileSortApplication
             }
         }*/
 
+        [STAThread]
         private void PopulateFields()
         {
             this.txt_fileName.Text = currFile.Name; // prevFileVars[0].ToString();
@@ -181,6 +192,7 @@ namespace FileSortApplication
             picBox_file.Image = b;
         }
 
+        [STAThread]
         public void GoToFinalPage()
         {
             this.Hide();

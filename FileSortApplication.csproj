@@ -200,6 +200,7 @@
     </Content>
     <Content Include="Icon\big_man.ico" />
     <Content Include="Icon\man.ico" />
+    <Content Include="Icon\folder.ico" />
     <None Include="Resources\green_checkmark.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

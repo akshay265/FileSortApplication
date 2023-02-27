@@ -44,7 +44,7 @@ namespace FileSortApplication
             this.MaximizeBox = false;
             this.MinimizeBox = true;
             this.BackColor = Color.WhiteSmoke;
-            //this.Icon = DefaultAttributes.DefaultIconObj;
+            this.Icon = DefaultAttributes.DefaultIconObj;
 
             //Top Label Text
             String time = DateTime.Now.ToString("HH:mm:ss");
@@ -71,6 +71,7 @@ namespace FileSortApplication
 
         }
 
+        [STAThread]
         private void btn_add_Click(object sender, EventArgs e)
         {
             if (!DefaultAttributes.UserAware)
@@ -80,10 +81,18 @@ namespace FileSortApplication
                 if (dlg == DialogResult.Yes)
                 {
                     DefaultAttributes.UserAware = true;
+
+                    Thread t = new Thread(new ThreadStart(ThreadSettingsForm));
+                    t.SetApartmentState(ApartmentState.STA);
+                    ThreadScheduler.AddThread(t, 1);
+                   // ThreadScheduler.StartThread(1);
+                    this.Close();
+                    this.Dispose();
+                   /* ThreadScheduler.AbortThread(0);
                     SettingsPage mySettingsPage = new SettingsPage();
                     this.Hide();
                     mySettingsPage.ShowDialog();
-                    this.Close();
+                    this.Close();*/
                 }
                 else if (dlg == DialogResult.No)
                 {
@@ -101,7 +110,7 @@ namespace FileSortApplication
                     Thread t = new Thread(new ThreadStart(ThreadAddModForm));
                     t.SetApartmentState(ApartmentState.STA);
                     ThreadScheduler.AddThread(t, 1);
-                    ThreadScheduler.StartThread(1);
+                    //ThreadScheduler.StartThread(1);
                     this.Close();
                     this.Dispose();
                     ThreadScheduler.AbortThread(0);
@@ -118,6 +127,7 @@ namespace FileSortApplication
 
         }
 
+        [STAThread]
         private UserFile OpenFileDialogAddMod()
         {
             try
@@ -157,7 +167,7 @@ namespace FileSortApplication
             }
             catch (Exception ex)
             {
-                DialogResult dlg = MessageBox.Show("You must select a file to add or modify it.",
+                DialogResult dlg = MessageBox.Show(ex.Message,//"You must select a file to add or modify it.",
                                                    "File Operation",
                                                    MessageBoxButtons.OK,
                                                    MessageBoxIcon.Warning);
@@ -173,18 +183,20 @@ namespace FileSortApplication
             return null;
         }
 
+        [STAThread]
         private void ThreadAddModForm()
         {
             //RUNs a NEW application with the desired form
             Application.Run(new AddModifyFilePage(UserFileStoreTemp.tempUserFile));
         }
+
+        [STAThread]
         private void ThreadSettingsForm()
         {
-            Clipboard.SetText("big black nigbard balls");
-
             Application.Run(new SettingsPage());
         }
 
+        [STAThread]
         private void btn_settings_Click(object sender, EventArgs e)
         {
             try
@@ -193,11 +205,11 @@ namespace FileSortApplication
                 Thread t = new Thread(new ThreadStart(ThreadSettingsForm));
                 t.SetApartmentState(ApartmentState.STA);
                 ThreadScheduler.AddThread(t, 1);
-                ThreadScheduler.StartThread(1);
+                //ThreadScheduler.StartThread(1);
 
                 this.Close();
                 this.Dispose();
-                ThreadScheduler.AbortThread(0);
+                //ThreadScheduler.AbortThread(0);
                 //t.Start();
               //  this.Close();
                 //this.Dispose();
@@ -205,6 +217,7 @@ namespace FileSortApplication
             }
             catch (Exception ex)
             {
+                Clipboard.SetText(ex.Message);
                 MessageBox.Show(ex.Message);
             }
             
@@ -214,6 +227,7 @@ namespace FileSortApplication
             this.Close();*/
         }
 
+        [STAThread]
         private void btnTest_Click(object sender, EventArgs e)
         {
             //DefaultAttributes.GetTheme();

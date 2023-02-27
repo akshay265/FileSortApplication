@@ -85,14 +85,14 @@ namespace FileSortApplication
 
             Thread t = new Thread(new ThreadStart(ThreadHomePage));
             ThreadScheduler.AddThread(t, 0);
-            ThreadScheduler.StartThread(0);
+            //ThreadScheduler.StartThread(0);
             /*
             HomePage myHomePage = new HomePage();
             this.Hide();
             myHomePage.ShowDialog();*/
             this.Close();
             this.Dispose();
-            ThreadScheduler.AbortThread(1);
+            //ThreadScheduler.AbortThread(1);
         }
 
         private void btn_save_Click(object sender, EventArgs e)
@@ -107,11 +107,11 @@ namespace FileSortApplication
 
                 Thread t = new Thread(new ThreadStart(ThreadHomePage));
                 ThreadScheduler.AddThread(t, 0);
-                ThreadScheduler.StartThread(0);
+               // ThreadScheduler.StartThread(0);
 
                 this.Close();
                 this.Dispose();
-                ThreadScheduler.AbortThread(1);
+                //ThreadScheduler.AbortThread(1);
                 /*HomePage myHomePage = new HomePage();
                 this.Hide();
                 myHomePage.ShowDialog();
@@ -145,6 +145,7 @@ namespace FileSortApplication
             }
         }
 
+        [STAThread]
         private void ThreadHomePage()
         {
             Application.Run(new HomePage());

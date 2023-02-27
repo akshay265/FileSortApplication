@@ -14,10 +14,18 @@ namespace FileSortApplication.Models
         private static Thread[] thrdLs = new Thread[3];
 
         //public ThreadScheduler() { }
-
+        
+        [STAThread]
         public static void AddThread(Thread t, int i)
         {
+            if (thrdLs[i] != null)
+            {
+                AbortThread(i);
+            }
+
             thrdLs[i] = t;
+
+            StartThread(i);
             //MessageBox.Show("Thread added at " + i);
         }
 
@@ -29,6 +37,7 @@ namespace FileSortApplication.Models
 
         }
 
+        [STAThread]
         public static void AbortThread(int i)
         {
             thrdLs[i].Abort();
