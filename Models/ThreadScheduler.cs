@@ -33,6 +33,7 @@ namespace FileSortApplication.Models
         public static void StartThread(int i)
         {
             thrdLs[i].Start();
+            thrdLs[i].Join();
             //MessageBox.Show("Thread started at " + i);
 
         }

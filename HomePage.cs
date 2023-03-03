@@ -28,6 +28,7 @@ namespace FileSortApplication
         {
             this.CenterToScreen();
             this.SetControls();
+            currFile = null;
         }
 
         private void SetControls()
@@ -104,8 +105,13 @@ namespace FileSortApplication
                // this.Close();
                 try
                 {
+
+                    //Thread t1 = new Thread((ThreadStart)(() => {
+                    UserFileStoreTemp.tempUserFile = currFile;//OpenFileDialogAddMod();
+                   // }));
+                   // t1.SetApartmentState (ApartmentState.STA);
+                  //  ThreadScheduler.AddThread(t1, 2);
                     
-                    UserFileStoreTemp.tempUserFile = OpenFileDialogAddMod();
                     //Create a thread to RUN a NEW application with the desired form
                     Thread t = new Thread(new ThreadStart(ThreadAddModForm));
                     t.SetApartmentState(ApartmentState.STA);
@@ -114,6 +120,7 @@ namespace FileSortApplication
                     this.Close();
                     this.Dispose();
                     ThreadScheduler.AbortThread(0);
+                    ThreadScheduler.AbortThread(2);
 
 
                     //myAddModPage.ShowDialog();
@@ -132,38 +139,52 @@ namespace FileSortApplication
         {
             try
             {
-                OpenFileDialog addModFileDlg = new OpenFileDialog
+                //string fName = "";
+                FileInfo fInfo = null;
+
+                Thread t = new Thread((ThreadStart)(() =>
                 {
-                    InitialDirectory = DefaultAttributes.DefaultDir,
-                    Title = "Please choose a file.",
+                    OpenFileDialog addModFileDlg = new OpenFileDialog
+                    {
+                        InitialDirectory = DefaultAttributes.DefaultDir,
+                        Title = "Please choose a file.",
 
-                    CheckFileExists = true,
-                    CheckPathExists = true,
-                    Multiselect = false,
+                        CheckFileExists = true,
+                        CheckPathExists = true,
+                        Multiselect = false,
 
-                    Filter = "Images (*.BMP;*.JPG;*.GIF,*.PNG,*.TIFF)|*.BMP;*.JPG;*.GIF;*.PNG;*.TIFF|" + "All files (*.*)|*.*",
-                    FilterIndex = 2,
-                    RestoreDirectory = true,
+                        Filter = "Images (*.BMP;*.JPG;*.GIF,*.PNG,*.TIFF)|*.BMP;*.JPG;*.GIF;*.PNG;*.TIFF|" + "All files (*.*)|*.*",
+                        FilterIndex = 2,
+                        RestoreDirectory = true,
 
-                    ReadOnlyChecked = false,
-                    ShowReadOnly = false
-                };
-                
-                if (addModFileDlg.ShowDialog() == DialogResult.OK && addModFileDlg.CheckFileExists)
-                {
-                    //create Userfile
-                    FileInfo fInfo = new FileInfo(addModFileDlg.FileName);
+                        ReadOnlyChecked = false,
+                        ShowReadOnly = false
+                    };
 
-                    currFile = new UserFile(-1,
-                                            fInfo.Name,
-                                            fInfo.FullName,
-                                            fInfo.Extension,
-                                            fInfo.Length,
-                                            fInfo.CreationTime.ToString(),
-                                            "");
+                    if (addModFileDlg.ShowDialog() == DialogResult.OK && addModFileDlg.CheckFileExists)
+                    {
+                        //create Userfile
+                        fInfo = new FileInfo(addModFileDlg.FileName);
 
-                    return currFile;
-                }
+                        
+                    }
+                }));
+
+                t.SetApartmentState(ApartmentState.STA);
+
+                ThreadScheduler.AddThread(t, 1);
+                // t.Start();
+                //t.Join();
+
+                currFile = new UserFile(-1,
+                                                fInfo.Name,
+                                                fInfo.FullName,
+                                                fInfo.Extension,
+                                                fInfo.Length,
+                                                fInfo.CreationTime.ToString(),
+                                                "");
+
+
             }
             catch (Exception ex)
             {

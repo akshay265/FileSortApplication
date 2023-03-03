@@ -1,15 +1,7 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Data;
-using System.Data.Odbc;
 using System.Data.OleDb;
-using System.DirectoryServices;
-using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace FileSortApplication.Models
 {
@@ -20,7 +12,7 @@ namespace FileSortApplication.Models
 
         static OleDbConnection myConn = new OleDbConnection(DSN);
         static OleDbDataAdapter myAdapter;
-        
+
 
         public static void EstablishConn(string SQL)
         {
@@ -31,11 +23,11 @@ namespace FileSortApplication.Models
         {
 
             string SQL = "SELECT * FROM File_List";
-/*
-            //Create Objects of ADOConnection and ADOCommand    
-            OleDbConnection myConn = new OleDbConnection(DSN);
-            OleDbDataAdapter myCmd = new OleDbDataAdapter(SQL, myConn);
-            myConn.Open();*/
+            /*
+                        //Create Objects of ADOConnection and ADOCommand    
+                        OleDbConnection myConn = new OleDbConnection(DSN);
+                        OleDbDataAdapter myCmd = new OleDbDataAdapter(SQL, myConn);
+                        myConn.Open();*/
             EstablishConn(SQL);
 
             DataSet ds = new DataSet();
@@ -56,7 +48,7 @@ namespace FileSortApplication.Models
              OleDbConnection myConn = new OleDbConnection(DSN);
              OleDbDataAdapter myCmd = new OleDbDataAdapter(SQL, myConn);
              myConn.Open();*/
-            
+
             EstablishConn(SQL);
 
             DataSet ds = new DataSet();
@@ -83,7 +75,14 @@ namespace FileSortApplication.Models
                 cmd.Parameters.Add(new OleDbParameter("@str", OleDbType.VarChar)).Value = newTag.ToString();
 
                 myConn.Open();
-                cmd.ExecuteNonQuery();
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch(Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
             }
         }
 
@@ -92,7 +91,7 @@ namespace FileSortApplication.Models
             OleDbConnection dbaseConnection = new OleDbConnection();
             OleDbDataAdapter dbaseAdapter;
             DataTable localFileTable = new DataTable();
-            
+
 
             string dbaseloc = CurrentPath.GetDbasePath() + "\\UserItems.accdb";
             dbaseConnection.ConnectionString = "Provider = Microsoft.ACE.OLEDB.12.0;Data Source = " + dbaseloc + ";";
@@ -102,7 +101,7 @@ namespace FileSortApplication.Models
             dbaseAdapter = new OleDbDataAdapter("SELECT * FROM File_List;", dbaseConnection);
             dbaseAdapter.Fill(localFileTable);
 
-           // rowPos = (localFileTable.Rows.Count != 0) ? localFileTable.Rows.Count : 0;
+            // rowPos = (localFileTable.Rows.Count != 0) ? localFileTable.Rows.Count : 0;
         }
     }
 }

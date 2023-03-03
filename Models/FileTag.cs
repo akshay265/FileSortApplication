@@ -17,6 +17,11 @@ namespace FileSortApplication.Models
             this.tagStr = str;
         }
 
+        public FileTag( String str)
+        {
+            this.tagStr = str;
+        }
+
         public override String ToString()
         {
             return tagStr;

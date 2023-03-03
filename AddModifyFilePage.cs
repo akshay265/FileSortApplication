@@ -13,6 +13,7 @@ using System.Collections;
 using System.IO;
 using System.Data.OleDb;
 using System.Threading;
+using Microsoft.VisualBasic;
 
 namespace FileSortApplication
 {
@@ -55,18 +56,22 @@ namespace FileSortApplication
             else
             {
                 MessageBox.Show("Please select a file to add or modify.");
-
+                /*
                 //Create a thread to RUN a NEW application with the desired form
                 Thread t = new Thread(new ThreadStart(ThreadHomePageForm));
                 //t.Start();
+                ThreadScheduler.AbortThread(0);
+                ThreadScheduler.AbortThread(1);
+                ThreadScheduler.AbortThread(2);
+
 
                 t.SetApartmentState(ApartmentState.STA);
                 ThreadScheduler.AddThread(t, 1);
                 //ThreadScheduler.StartThread(1);
                 this.Close();
                 this.Dispose();
-                ThreadScheduler.AbortThread(0);
-                //this.Close();
+               // ThreadScheduler.AbortThread(0);
+                //this.Close();*/
             }
         }
 
@@ -252,8 +257,16 @@ namespace FileSortApplication
 
         private void btn_createTag_Click(object sender, EventArgs e)
         {
-            AddTagPage myAddTagPage = new AddTagPage();
-            myAddTagPage.ShowDialog();
+            String tagStr = Interaction.InputBox("Tag Name", "Create New Tag", "");
+            if (!tagStr.Equals(""))
+            {
+                DbaseConnection.AddTag(new FileTag(tagStr));
+            }
+
+
+            /*
+             AddTagPage myAddTagPage = new AddTagPage();
+             myAddTagPage.ShowDialog();*/
         }
     }
 }
