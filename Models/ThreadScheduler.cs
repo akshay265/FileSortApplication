@@ -46,6 +46,10 @@ namespace FileSortApplication.Models
 
         }
 
+        [STAThread]
+        public static void StartHomeThread()
+        {
 
+        }
     }
 }
